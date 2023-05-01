@@ -18,16 +18,16 @@ def create_noise(image):
             noise = random.randint(-NOISE_D, NOISE_D) + 50
             new_color = (cur_color[0] + noise, cur_color[1] + noise, cur_color[2] + noise)
             image.putpixel((x, y), new_color)
-    return image
+    return image.rotate(40)
 
 def resize_image(image):
     return image.resize((round(image.size[0] * 0.5), round(image.size[1] * 0.5)), Image.LANCZOS)
 
 def save_image(image, path):
     sliced = path.split(".")
-    sliced[-1] = "_redacted." + sliced[-1]
+    sliced[-1] = "_redacted.png"
     path = ''.join(sliced)
-    image.save(path, quality=35)
+    image.save(path, quality=35, format="PNG")
 
 
 
